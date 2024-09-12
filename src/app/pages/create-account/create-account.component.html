@@ -1,0 +1,20 @@
+<div class="create-account-container flex p-6 w-full h-full justify-center items-center">
+    <div class="container flex gap-8 h-fit">
+        <div [formGroup]="accountForm" class="left-section flex flex-col flex-1 gap-y-4">
+            <h1 class="text-[72px] font-bold">Take Control of <span class="text-customHsl-accent">Your Money</span></h1>
+            <p class="text-2xl">Personal budgeting is the secret to financial freedom. Start your jurney today!</p>
+            <input formControlName="name" class="input-select" type="text" placeholder="Enter account name">
+
+            <button [disabled]="accountForm.invalid" (click)="createAccount()" class="btn bg-customHsl-text text-white border-none w-fit text-[19px]">
+                Create Account
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="currentColor" fill="none">
+                    <path d="M12 8V16M16 12H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
+                </svg>
+            </button>
+        </div>
+        <div class="right-section flex-1">
+            <img src="assets/budgeting_set.png" alt="" srcset="">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+@if (config && config.color && borderColor && textColor) {
+    <div class=" flex flex-col gap-4 border-2 border-solid py-4 px-5 rounded-[25px] bg-white" 
+        [ngClass]="borderColor === 'amber-border' ? 'amber-border' : borderColor === 'red-border' ? 'red-border' : 'blue-border'" 
+    >
+        <div class="progress-text flex w-full justify-between items-center">
+            <p class="text-2xl font-bold"
+                [ngClass]="textColor === 'amber-text' ? 'amber-text' : textColor === 'red-text' ? 'red-text' : 'blue-text'"
+            >
+                {{config.name}}
+            </p>
+            <p class="{{textColor}} text-2xl">{{config.budget | currency:'EUR':'symbol'}} Budgeted</p>
+        </div>
+
+        <div class="progress-bar w-full h-4 appearance-none border-none rounded-[100vmax]
+            overflow-hidden relative bg-gray-300">
+            <div [style.width]="calculatePercentage()" class="progress-bar h-full absolute top-0 left-0 z-2 {{bgColor}}"
+            [ngClass]="bgColor === 'amber-bg' ? 'amber-bg' : bgColor === 'red-bg' ? 'red-bg' : 'blue-bg'"
+            ></div>
+
+        </div>
+
+        <div class="progress-text flex justify-between w-full">
+            <small class="{{textColor}} text-[15px] ">{{config.spent | currency:'EUR':"symbol"}}</small>
+            <small class="text-customHsl-muted text-[15px] ">{{config.budget - config.spent| currency:'EUR':"symbol"}}</small>
+        </div>
+
+        <div (click)="viewDetails()" class="btn {{bgColor}} m-auto text-white w-fit border-none">
+            {{isDelete ? 'Delete budget' : 'ViewDetails'}}
+            @if (isDelete) {
+                
+            } @else {
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash-stack" viewBox="0 0 16 16">
+                    <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+                    <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2z"/>
+                    </svg>
+            }
+        </div>
+            
+    </div>
+}
